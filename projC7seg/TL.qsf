@@ -76,4 +76,5 @@ set_global_assignment -name VERILOG_FILE comparator.v
 set_global_assignment -name VERILOG_FILE tb.v
 set_global_assignment -name VERILOG_FILE shifter.v
 set_global_assignment -name VERILOG_FILE abd_lcd_initializer.v
+set_global_assignment -name VERILOG_FILE hex_to_7seg_anode.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

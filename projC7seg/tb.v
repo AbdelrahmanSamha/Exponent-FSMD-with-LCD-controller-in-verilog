@@ -62,26 +62,20 @@ module tb;
 endmodule
 */
 
-`timescale 1ns/1ps
-
 module tb;
 
-    // Inputs
-    reg clk = 0;
-    reg rst = 1;
-    reg go_i = 0;
-    reg [7:0] n_i = 8'd8;
-    reg [7:0] a_i = 8'd2;
+    reg clk;
+    reg rst;
+    reg go_i;
+    reg [7:0] a_i, n_i;
 
-    // Outputs
     wire [15:0] output_reg;
     wire sig_done;
-    wire [7:0] LCD_DATA;
-    wire LCD_EN, LCD_RS, LCD_RW;
-    wire LCD_ON, LCD_BLON, LCD_OVER;
 
-    // Instantiate TL module
-    TL uut (
+    wire [6:0] seg0, seg1, seg2, seg3, seg4, seg5, seg6, seg7;
+
+    // Instantiate the TL module
+    TL dut (
         .clk(clk),
         .rst(rst),
         .go_i(go_i),
@@ -89,45 +83,63 @@ module tb;
         .a_i(a_i),
         .output_reg(output_reg),
         .sig_done(sig_done),
-        .LCD_DATA(LCD_DATA),
-        .LCD_EN(LCD_EN),
-        .LCD_RS(LCD_RS),
-        .LCD_RW(LCD_RW),
-        .LCD_ON(LCD_ON),
-        .LCD_BLON(LCD_BLON),
-        .LCD_OVER(LCD_OVER)
+        .seg0(seg0),
+        .seg1(seg1),
+        .seg2(seg2),
+        .seg3(seg3),
+        .seg4(seg4),
+        .seg5(seg5),
+        .seg6(seg6),
+        .seg7(seg7)
     );
 
-    // Clock generation: 50MHz (20ns period)
-    always #10 clk = ~clk;
+    // Clock generation
+    always #5 clk = ~clk;
 
     initial begin
-        $display("----- Starting TL Testbench -----");
+        $display("Starting simulation...");
+        $monitor("Time=%0t | a_i=%0d, n_i=%0d, result=%0d, done=%b", $time, a_i, n_i, output_reg, sig_done);
 
-        // Hold reset
-        #50;
+        // Initialize
+        clk = 0;
+        rst = 1;
+        go_i = 0;
+        a_i = 0;
+        n_i = 0;
+
+        // Reset pulse
+        #10;
         rst = 0;
 
-        // Trigger computation
-        #100;
+        // Test 1: a = 3, n = 4 → result = 81
+        a_i = 3;
+        n_i = 4;
         go_i = 1;
-        #20;
-        go_i = 0;
+        #10 go_i = 0;
 
-        // Wait for result ready
         wait (sig_done == 1);
-        $display("Computation done. Output result: %d", output_reg);
+        #10;
 
-        // Wait for LCD to finish displaying
-        wait (LCD_OVER == 1);
-        $display("LCD finished displaying.");
+        if (output_reg == 81)
+            $display("Test Passed: 3^4 = %d", output_reg);
+        else
+            $display("Test Failed: Expected 81, Got %d", output_reg);
 
-        // Let waveform capture stabilize
-        #1_000_000;
+        // Optional: Display segment values
+        $display("7-Segment Outputs (HEX Display):");
+        $display("seg0 = %b", seg0);
+        $display("seg1 = %b", seg1);
+        $display("seg2 = %b", seg2);
+        $display("seg3 = %b", seg3);
+        $display("seg4 = %b", seg4);
+        $display("seg5 = %b", seg5);
+        $display("seg6 = %b", seg6);
+        $display("seg7 = %b", seg7);
 
         $finish;
     end
 
 endmodule
+
 
 
