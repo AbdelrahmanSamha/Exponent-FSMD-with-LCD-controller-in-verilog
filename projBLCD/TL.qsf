@@ -126,7 +126,6 @@ set_location_assignment PIN_J16 -to output_reg[12]
 set_location_assignment PIN_H17 -to output_reg[13]
 set_location_assignment PIN_F15 -to output_reg[14]
 set_location_assignment PIN_G15 -to output_reg[15]
-set_global_assignment -name VERILOG_FILE output_files/hex_to_7seg_anode.v
 set_location_assignment PIN_G18 -to seg4[0]
 set_location_assignment PIN_F22 -to seg4[1]
 set_location_assignment PIN_E17 -to seg4[2]
@@ -183,4 +182,5 @@ set_location_assignment PIN_AH17 -to seg1[3]
 set_location_assignment PIN_AF17 -to seg1[4]
 set_location_assignment PIN_AG18 -to seg1[5]
 set_location_assignment PIN_AA14 -to seg1[6]
+set_global_assignment -name VERILOG_FILE hex_to_7seg_anode.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
