@@ -68,7 +68,7 @@ module tb;
 
     // Inputs
     reg clk = 0;
-    reg rst = 1;
+    reg rst = 0;
     reg go_i = 0;
     reg [7:0] n_i = 8'd8;
     reg [7:0] a_i = 8'd2;
@@ -106,7 +106,7 @@ module tb;
 
         // Hold reset
         #50;
-        rst = 0;
+        rst = 1;
 
         // Trigger computation
         #100;

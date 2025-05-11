@@ -279,8 +279,8 @@ function [7:0] nibble_to_ascii;
     end
 endfunction
 
-always @ (posedge clk, posedge rst) begin
-    if (rst) begin
+always @ (posedge clk, negedge rst) begin
+    if (~rst) begin
         state <= IDLE;
         counter <= 1'b0;
         cmd_index <= 4'b0;

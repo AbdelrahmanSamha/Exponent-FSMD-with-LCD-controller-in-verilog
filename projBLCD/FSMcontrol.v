@@ -12,8 +12,8 @@ module FSMcontrol (
 parameter idle = 3'b000, init= 3'b001, check = 3'b010,
           process_even = 3'b011, process_odd = 3'b100, done = 3'b101;
 
-always @(posedge clk, posedge rst) begin 
-    if (rst) begin 
+always @(posedge clk, negedge rst) begin 
+    if (~rst) begin 
 		state <= idle;
 		sig_done <=1'b0;
 	 end

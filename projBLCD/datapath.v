@@ -18,8 +18,8 @@ wire [15:0] shifter_out;
 
 assign n_reg = n_internal;
 
-always @(posedge clk, posedge rst) begin
-    if (rst) begin
+always @(posedge clk, negedge rst) begin
+    if (~rst) begin
         n_internal <= 8'b0;
         a_reg <= 16'b0;
         result_reg <= 16'b0;
