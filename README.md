@@ -3,9 +3,9 @@
 the main feature of this project is a Static LCD controller. 
 the LCD controller is found in abd_lcd_initializer.v 
 Do NOT modify the states that contian : 
-En signal 
-RS signal 
-Counter for delay
+En signal,
+RS signal, 
+Counter for delay.
 
 the only thing you need to change is case statement which is in the SEND_CHAR state. 
 the programmer must also change the limits of char_index accross the file, depending on how many characters they want to display. 
