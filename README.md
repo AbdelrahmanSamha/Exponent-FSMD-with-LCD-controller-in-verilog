@@ -1,4 +1,4 @@
-#Single purpose exponent calculator with LCD controller
+# Single purpose exponent calculator with LCD controller
 
 the main feature of this project is a Static LCD controller. 
 the LCD controller is found in abd_lcd_initializer.v 
