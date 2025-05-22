@@ -1,5 +1,6 @@
 # Single purpose exponent calculator with LCD controller
 
+the project is a FSMD that calculate A to the power of N. sizing of the registers are 8,8 respectively to produce a 16 bit result. 
 the main feature of this project is a Static LCD controller. 
 the LCD controller is found in abd_lcd_initializer.v 
 Do NOT modify the states that contian : 
