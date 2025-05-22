@@ -1,4 +1,9 @@
-
+// -----------------------------------------------------
+// Created by Abdelrahman Samha
+// The Hashemite University
+// Project: [Single purpose exponent calculator]
+// Date: [?/5/2025]
+// -----------------------------------------------------
 
 
 module TL (
